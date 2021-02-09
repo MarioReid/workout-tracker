@@ -2,6 +2,10 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
+// import routes
+const apiRoutes = require('./routes/api_routes');
+const htmlRoutes = require('./routes/html_routes');
+
 const PORT = process.env.PORT || 3000;
 
 const Workout = require("./models/workoutModel.js");
@@ -20,19 +24,9 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
-app.post("/submit", ({ body }, res) => {
-  const user = new User(body);
-  user.setFullName();
-  user.lastUpdatedDate();
-
-  User.create(user)
-    .then((dbUser) => {
-      res.json(dbUser);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
+// define routes
+app.use('/api', apiRoutes);
+app.use('/html', htmlRoutes);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
