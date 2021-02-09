@@ -16,15 +16,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/custommethoddb",
+  process.env.MONGODB_URI || "mongodb://localhost/workout",
   { useNewUrlParser: true }
 );
-//goes in routes
-app.get("/api/workouts", (req, res) => {
-  Workout.find().then((allWorkouts) => {
-    res.json(allWorkouts);
-  });
-});
 
 app.post("/submit", ({ body }, res) => {
   const user = new User(body);

@@ -1,2 +1,5 @@
-module.exports = {Workout:require("./workoutModel")};
+module.exports = {
+    Workout:require("./workoutModel"),
+    Exercise:require("./exerciseModel"),
+};
 
