@@ -12,7 +12,7 @@ const Workout = require("./models/workoutModel.js");
 
 const app = express();
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,7 +26,7 @@ mongoose.connect(
 
 // define routes
 app.use('/api', apiRoutes);
-app.use('/html', htmlRoutes);
+app.use('*', htmlRoutes);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
